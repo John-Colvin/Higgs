@@ -65,6 +65,12 @@ string indent(string input, string indentStr = "\t")
     return output.data;
 }
 
+unittest
+{
+    assert(indent("") == "");
+    assert(indent("\nabcd\nefgh\n") == "\t\n\tabcd\n\tefgh\n");
+}
+
 /**
 Escape a JavaScript string for output
 */
