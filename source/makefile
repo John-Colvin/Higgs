@@ -1,5 +1,5 @@
 DC = dmd
-COPTS = -m64 -O
+COPTS = -m64 -O -release -noboundscheck
 
 BIN_NAME = higgs
 BIN_NAME_TEST = test-higgs

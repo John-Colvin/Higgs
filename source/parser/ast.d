@@ -79,15 +79,14 @@ class ASTProgram : FunExpr
         auto blockStmt = cast(BlockStmt)bodyStmt;
         auto stmts = blockStmt.stmts;
 
+	if(stmts.length == 0)
+            return "";
+
         string str;
 
-        for (size_t i = 0; i < stmts.length; ++i)
-        {
-            auto stmt = stmts[i];
-            str ~= stmt.toString();
-            if (i < stmts.length - 1)
-                str ~= "\n";
-        }
+        foreach (stmt; stmts[0 .. $-1])
+            str ~= stmt.toString() ~ "\n";
+        str ~= stmts[$-1].toString();
 
         return str;
     }

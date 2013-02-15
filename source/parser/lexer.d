@@ -303,7 +303,7 @@ class StrStream
     /// Read a character and advance the current index
     auto readCh()
     {
-        wchar ch = (index < str.length)? str[index]:'\0';
+        wchar ch = (index < str.length) ? str[index] : '\0';
 
         index++;
 
@@ -323,7 +323,7 @@ class StrStream
     /// Read a character without advancing the index
     auto peekCh()
     {
-        wchar ch = (index < str.length)? str[index]:'\0';
+        wchar ch = (index < str.length) ? str[index] : '\0';
         return ch;
     }
 
@@ -348,7 +348,7 @@ class StrStream
     {
         auto m = std.regex.match(str[index .. str.length], re);
 
-        if (m.captures.empty == false)
+        if (!m.captures.empty)
             for (int i = 0; i < m.captures[0].length; ++i)
                 readCh();
 
@@ -704,7 +704,7 @@ Token getToken(StrStream stream)
         wstring str = "";
 
         // Until the end of the string
-        CHAR_LOOP: for (;;)
+        for (;;)
         {
             ch = stream.readCh();
 
@@ -741,7 +741,7 @@ Token getToken(StrStream stream)
 
                     str ~= cast(char)charCode;
 
-                    continue CHAR_LOOP;
+                    continue;
                 }
 
                 // Octal escape sequence regular expression
@@ -758,7 +758,7 @@ Token getToken(StrStream stream)
 
                     str ~= cast(char)charCode;
 
-                    continue CHAR_LOOP;
+                    continue;
                 }
 
                 auto code = stream.readCh();
