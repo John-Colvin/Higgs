@@ -43,22 +43,24 @@ import std.array;
 /**
 Indent each line of a text string
 */
-string indent(string input, string indentStr = "    ")
+string indent(string input, string indentStr = "\t")
 {
-    auto output = appender!string();
+    if (input.length == 0)
+        return "";
 
-    if (input.length > 0)
-        output.put(indentStr);
-
-    for (size_t i = 0; i < input.length; ++i)
+    auto output = appender!string(indentStr);
+    
+    size_t marker = 0;
+    foreach(i, ch; input[0..$-1])
     {
-        auto ch = input[i];
-
-        output.put(ch);
-
-        if (ch == '\n' && i != input.length - 1)
+        if (ch == '\n')
+        {
+            output.put(input[marker..i+1]);
+            marker = i+1;
             output.put(indentStr);
+        }
     }
+    output.put(input[$-1]);
 
     return output.data;
 }
