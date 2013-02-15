@@ -70,10 +70,8 @@ wstring escapeJSString(wstring input)
 {
     auto output = appender!wstring();
 
-    for (size_t i = 0; i < input.length; ++i)
+    foreach(ch; input)
     {
-        auto ch = input[i];
-
         switch (ch)
         {
             case '\0': output.put("\\0"); break;
@@ -104,10 +102,8 @@ string escapeDString(string input)
 {
     auto output = appender!string();
 
-    for (size_t i = 0; i < input.length; ++i)
+    foreach(ch; input)
     {
-        auto ch = input[i];
-
         switch (ch)
         {
             case '\0': output.put("\\0"); break;
