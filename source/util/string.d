@@ -60,7 +60,7 @@ string indent(string input, string indentStr = "\t")
             output.put(indentStr);
         }
     }
-    output.put(input[$-1]);
+    output.put(input[marker..$]);
 
     return output.data;
 }
@@ -68,7 +68,10 @@ string indent(string input, string indentStr = "\t")
 unittest
 {
     assert(indent("") == "");
-    assert(indent("\nabcd\nefgh\n") == "\t\n\tabcd\n\tefgh\n");
+    auto testStr = "\nabcd\nefgh\n";
+    auto expRes = "#\n#abcd\n#efgh\n";
+    auto res = indent(testStr,"#");
+    assert(res == expRes,"\n\""~res~"\"\n\""~expRes~"\"");
 }
 
 /**
