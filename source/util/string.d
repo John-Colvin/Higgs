@@ -49,6 +49,7 @@ string indent(string input, string indentStr = "\t")
         return "";
 
     auto output = appender!string(indentStr);
+    output.reserve(input.length + indentStr.length*input.length/10);
     
     size_t marker = 0;
     foreach(i, ch; input[0..$-1])
@@ -71,7 +72,7 @@ unittest
     auto testStr = "\nabcd\nefgh\n";
     auto expRes = "#\n#abcd\n#efgh\n";
     auto res = indent(testStr,"#");
-    assert(res == expRes,"\n\""~res~"\"\n\""~expRes~"\"");
+    assert(res == expRes);
 }
 
 /**
