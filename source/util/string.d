@@ -57,8 +57,8 @@ string indent(string input, string indentStr = "\t")
         if (ch == '\n')
         {
             output.put(input[marker..i+1]);
-            marker = i+1;
             output.put(indentStr);
+            marker = i+1;
         }
     }
     output.put(input[marker..$]);
