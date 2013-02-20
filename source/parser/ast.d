@@ -79,16 +79,19 @@ class ASTProgram : FunExpr
         auto blockStmt = cast(BlockStmt)bodyStmt;
         auto stmts = blockStmt.stmts;
 
-	if(stmts.length == 0)
+        if(stmts.length == 0)
             return "";
 
-        string str;
+        auto str = appender!string();
 
-        foreach (stmt; stmts[0 .. $-1])
-            str ~= stmt.toString() ~ "\n";
+        foreach (stmt; stmts[0..$-1])
+        {
+            str ~= stmt.toString();
+            str ~= "\n";
+        }
         str ~= stmts[$-1].toString();
 
-        return str;
+        return str.data;
     }
 }
 
