@@ -91,7 +91,7 @@ class ASTProgram : FunExpr
         }
         str ~= stmts[$-1].toString();
 
-        return str;
+        return str.data;
     }
 }
 
